@@ -1,6 +1,10 @@
 <template>
   <div>
-    <!-- <line-chart v-if="loaded" :chartdata="chartdata" :options="options" /> -->
+    <div class="dashboard">
+      <h1>Dashboard</h1>
+    </div>
+    <hr />
+    <v-card elevation="13" outlined shaped></v-card>
     <div class="container">
       <div class="row">
         <div class="col">
