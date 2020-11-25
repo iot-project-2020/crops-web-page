@@ -1,4 +1,5 @@
 import Firebase from 'firebase'
+import 'firebase/firestore';
 var config = {
     apiKey: "AIzaSyAHrMtWQWrhMCuMwCsB-eegLgPtw_pzN44",
     authDomain: "iot-crops.firebaseapp.com",

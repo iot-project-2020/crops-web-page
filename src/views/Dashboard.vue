@@ -3,6 +3,7 @@
     <div class="dashboard">
       <h1>Dashboard</h1>
     </div>
+    <p>{{ data }}</p>
     <hr />
 
     <v-card
@@ -125,6 +126,7 @@ export default {
     LineChart,
   },
   data: () => ({
+    data: [],
     numberData: [2, 10, 5, 9, 0, 6, 15],
     chartData: {
       Books: 24,
@@ -218,23 +220,29 @@ export default {
       //   this.datasetsLine[0].data = this.numberData;
     },
     fetchData() {
-      let dat = db.ref("crop-1/CO2/");
-      let self = this;
-      dat.on("value", function (snapshot) {
-        let returnArr = [];
-        snapshot.forEach(function (childSnapshot) {
-          returnArr.push(childSnapshot.val());
-          // Fill the local data property with Firebase data
-          self.lists = returnArr;
-          console.log(returnArr);
+      db.ref("crop-1/CO2/")
+        .once("value")
+        .then((dataSnapshot) => {
+          console.log(dataSnapshot.val());
+          // this.schoolsArray = dataSnapshot.val();
         });
+
+      db.ref("crop-1/CO2/").on("child_added", function (data) {
+        console.log("Se agrego " + data);
       });
-      return self;
+      db.ref("crop-1/CO2/").on("child_changed", function (data) {
+        // window.location = "index.html";
+        console.log("Se cambio" + data);
+        // setCommentValues(postElement, data.key, data.val().text, data.val().author);`
+      });
+
+      db.ref("crop-1/CO2/").on("child_removed", function (data) {
+        console.log("Se elimino" + data);
+        // deleteComment(postElement, data.key);
+      });
     },
   },
-  // firebase: {
-  //   items: this.fetchData(),
-  // },
+
   created() {
     // const customAction = {
     //   getData: { method: "GET" },
@@ -242,7 +250,9 @@ export default {
     // this.resource = this.$resource("{node}.json", {}, customAction);
     // this.loadData("crop-1/CO2/");
   },
-  mounted() {},
+  mounted() {
+    this.fetchData();
+  },
   beforeUpdate() {},
   serverPrefetch() {},
 };

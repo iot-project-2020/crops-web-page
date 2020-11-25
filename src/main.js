@@ -4,9 +4,12 @@ import VueRouter from 'vue-router'
 import router from './router'
 import VueResource from 'vue-resource'
 import vuetify from './plugins/vuetify';
-// import VueFire from 'vuefire'
+import {
+  firestorePlugin
+} from 'vuefire'
 
-// Vue.use(VueFire)
+
+Vue.use(firestorePlugin)
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
