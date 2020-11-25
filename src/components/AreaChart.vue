@@ -3,12 +3,8 @@ import { Line } from "vue-chartjs";
 
 export default {
   extends: Line,
-  data() {
-    return {
-      gradient: null,
-      gradient2: null,
-    };
-  },
+
+  props: ["labels", "data", "gradient", "gradient2"],
   mounted() {
     this.gradient = this.$refs.canvas
       .getContext("2d")

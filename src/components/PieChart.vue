@@ -2,6 +2,7 @@
 import { Pie } from "vue-chartjs";
 
 export default {
+  props: ["labelChart", "dataChart"],
   extends: Pie,
   mounted() {
     this.gradient = this.$refs.canvas
@@ -20,16 +21,16 @@ export default {
     this.gradient2.addColorStop(1, "rgba(0, 231, 255, 0)");
     this.renderChart(
       {
-        labels: ["Books", "Magazines", "Newspapers"],
+        labels: this.labelChart,
         datasets: [
           {
             backgroundColor: [this.gradient, this.gradient2, "#00D8FF"],
-            data: [40, 20, 10]
-          }
-        ]
+            data: this.dataChart,
+          },
+        ],
       },
       { responsive: true, maintainAspectRatio: false }
     );
-  }
+  },
 };
 </script>
