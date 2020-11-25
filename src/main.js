@@ -4,7 +4,9 @@ import VueRouter from 'vue-router'
 import router from './router'
 import VueResource from 'vue-resource'
 import vuetify from './plugins/vuetify';
+// import VueFire from 'vuefire'
 
+// Vue.use(VueFire)
 Vue.use(VueResource)
 Vue.use(VueRouter)
 

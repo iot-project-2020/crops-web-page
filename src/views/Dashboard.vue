@@ -114,7 +114,7 @@ import PieChart from "../components/PieChart.vue";
 import BarChart from "../components/BarChart.vue";
 import RadarChart from "../components/RadarChart.vue";
 import LineChart from "../components/LineChart.vue";
-
+import { db } from "../firebase";
 export default {
   name: "Dashboard",
   components: {
@@ -217,14 +217,30 @@ export default {
       //   console.log(this.numberData);
       //   this.datasetsLine[0].data = this.numberData;
     },
+    fetchData() {
+      let dat = db.ref("crop-1/CO2/");
+      let self = this;
+      dat.on("value", function (snapshot) {
+        let returnArr = [];
+        snapshot.forEach(function (childSnapshot) {
+          returnArr.push(childSnapshot.val());
+          // Fill the local data property with Firebase data
+          self.lists = returnArr;
+          console.log(returnArr);
+        });
+      });
+      return self;
+    },
   },
-
-  async created() {
-    const customAction = {
-      getData: { method: "GET" },
-    };
-    this.resource = this.$resource("{node}.json", {}, customAction);
-    this.loadData("crop-1/CO2/");
+  // firebase: {
+  //   items: this.fetchData(),
+  // },
+  created() {
+    // const customAction = {
+    //   getData: { method: "GET" },
+    // };
+    // this.resource = this.$resource("{node}.json", {}, customAction);
+    // this.loadData("crop-1/CO2/");
   },
   mounted() {},
   beforeUpdate() {},
