@@ -4,43 +4,107 @@
       <h1>Dashboard</h1>
     </div>
     <hr />
-    <v-card elevation="13" outlined shaped></v-card>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <PieChart :labelChart="labelsPie" :dataChart="dataPie" />
-        </div>
-        <div class="col">
-          <LineChart :labels="labelsMonths" :datasets="datasetsLine" />
-        </div>
-      </div>
-    </div>
-    <hr />
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <BarChart :labels="labelsMonths" :datasets="datasetsBar" />
-        </div>
-        <div class="col">
-          <RadarChart :labels="labelsRadar" :datasets="dataRadar" />
-        </div>
-      </div>
-    </div>
-    <hr />
-    <div class="container">
-      <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-sm">
-          <!-- <AreaChart
+
+    <v-card
+      class="mx-auto"
+      outlined
+      shaped
+      elevation="13"
+      max-width="1000"
+      align="center"
+    >
+      <v-container fluid>
+        <v-row dense>
+          <v-col :cols="12">
+            <v-card>
+              <LineChart :labels="labelsMonths" :datasets="datasetsLine" />
+              <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                  <v-icon>mdi-cached</v-icon>
+                </v-btn>
+
+                <v-btn icon>
+                  <v-icon>mdi-bookmark</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+          <v-col :cols="6">
+            <v-card>
+              <BarChart :labels="labelsMonths" :datasets="datasetsBar" />
+              <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                  <v-icon>mdi-cached</v-icon>
+                </v-btn>
+
+                <v-btn icon>
+                  <v-icon>mdi-bookmark</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+          <v-col :cols="6">
+            <v-card>
+              <PieChart :labelChart="labelsPie" :dataChart="dataPie" />
+              <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                  <v-icon>mdi-cached</v-icon>
+                </v-btn>
+
+                <v-btn icon>
+                  <v-icon>mdi-bookmark</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+
+          <v-col :cols="12">
+            <v-card>
+              <RadarChart :labels="labelsRadar" :datasets="dataRadar" />
+              <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                  <v-icon>mdi-cached</v-icon>
+                </v-btn>
+
+                <v-btn icon>
+                  <v-icon>mdi-bookmark</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+
+          <v-col :cols="12">
+            <v-card>
+              <!-- <AreaChart
             :labels="labelsArea"
             :datasets="dataArea"
             :gradient="gradient"
             :gradient2="gradient2"
           /> -->
-        </div>
-        <div class="col-sm"></div>
-      </div>
-    </div>
+              <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                  <v-icon>mdi-cached</v-icon>
+                </v-btn>
+
+                <v-btn icon>
+                  <v-icon>mdi-bookmark</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card>
   </div>
 </template>
 
@@ -127,21 +191,22 @@ export default {
   }),
   methods: {
     loadData(node) {
-      let resultArray = [];
       this.resource
         .getData({ node: node })
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          //   console.log(data);
-          resultArray = [];
+          // console.log(data);
+          const resultArray = [];
           for (let key in data) {
-            const f = parseFloat(data[key].slice(0, -1));
+            console.log(data[key]);
+            const f = parseFloat(data[key]["data"]);
             resultArray.push(f);
-            this.datasetsLine.push(f);
+            // this.datasetsLine.push(f);
           }
-          console.log(this.datasetsLine);
+          console.log(resultArray);
+          this.datasetsLine = resultArray;
         });
 
       //   for (var i in resultArray) {
@@ -154,12 +219,19 @@ export default {
     },
   },
 
-  created() {
+  async created() {
     const customAction = {
       getData: { method: "GET" },
     };
     this.resource = this.$resource("{node}.json", {}, customAction);
-    this.loadData("crop-2/Humidity");
+    this.loadData("crop-1/CO2/");
   },
+  mounted() {},
+  beforeUpdate() {},
+  serverPrefetch() {},
 };
 </script>
+
+
+<style scoped>
+</style>
