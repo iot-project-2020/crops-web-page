@@ -28,48 +28,35 @@
                     <v-card-title
                       v-text="'Grafico de Calidad de aire'"
                     ></v-card-title>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn icon>
-                        <v-icon>mdi-cached</v-icon>
-                      </v-btn>
-
-                      <v-btn icon>
-                        <v-icon>mdi-bookmark</v-icon>
-                      </v-btn>
-                    </v-card-actions>
+                    <v-card-text>
+                      El eje de las abscisas muestra el tiempo en que se tomo
+                      los datos y el eje de las ordenadas muetra el porcentaje
+                      de la calidad de aire
+                    </v-card-text>
                   </v-card>
                 </v-col>
                 <v-col :cols="6">
                   <v-card>
                     <BarChart :labels="labelsMonths" :datasets="datasetsBar" />
-                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn icon>
-                        <v-icon>mdi-cached</v-icon>
-                      </v-btn>
-
-                      <v-btn icon>
-                        <v-icon>mdi-bookmark</v-icon>
-                      </v-btn>
-                    </v-card-actions>
+                    <v-card-title
+                      v-text="'Grafico de Radiacion mensual'"
+                    ></v-card-title>
+                    <v-card-text>
+                      El eje de las abscisas muestra los meses del año y el eje
+                      de las ordenadas muetra el porcentaje de radiacion
+                    </v-card-text>
                   </v-card>
                 </v-col>
                 <v-col :cols="6">
                   <v-card>
                     <PieChart :labelChart="labelsPie" :dataChart="dataPie" />
-                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn icon>
-                        <v-icon>mdi-cached</v-icon>
-                      </v-btn>
-
-                      <v-btn icon>
-                        <v-icon>mdi-bookmark</v-icon>
-                      </v-btn>
-                    </v-card-actions>
+                    <v-card-title
+                      v-text="'Grafico de resumen de cultivos'"
+                    ></v-card-title>
+                    <v-card-text>
+                      EL grafico presenta un resumen de los cultivos. Si estos
+                      fueron exitosos, se perdieron o simplemente son normales
+                    </v-card-text>
                   </v-card>
                 </v-col>
 
@@ -77,16 +64,10 @@
                   <v-card>
                     <RadarChart :labels="labelsRadar" :datasets="dataRadar" />
                     <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn icon>
-                        <v-icon>mdi-cached</v-icon>
-                      </v-btn>
-
-                      <v-btn icon>
-                        <v-icon>mdi-bookmark</v-icon>
-                      </v-btn>
-                    </v-card-actions>
+                    <v-card-text>
+                      El eje de las abscisas muestra los meses del año y el eje
+                      de las ordenadas muetra el porcentaje de radiacion
+                    </v-card-text>
                   </v-card>
                 </v-col>
 
@@ -117,7 +98,7 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
       <v-expansion-panel>
-        <v-expansion-panel-header>Cultivo 1</v-expansion-panel-header>
+        <v-expansion-panel-header>Cultivo 2</v-expansion-panel-header>
         <v-expansion-panel-content>
           <v-card
             class="mx-auto"
@@ -258,7 +239,7 @@ export default {
     gradient: null,
     gradient2: null,
     dataPie: [1, 2, 3],
-    labelsPie: ["Fulano1", "Fulano2", "Fulano3"],
+    labelsPie: ["Perdidos", "Estable", "Exitosos"],
     labelsRadar: [
       "Eating",
       "Drinking",
@@ -305,7 +286,7 @@ export default {
       console.log("Se agrego un dato");
       // console.log(snapshot);
       const item = snapshot.val();
-
+      const moment = require("moment");
       for (var key in item) {
         // console.log(key);
         if (key === "data") {
@@ -313,8 +294,11 @@ export default {
           this.datasetsLine.push(snapshot.val()[key]);
           // this.loadData(snapshot.val()[key]);
         }
-        if (key === "hour") {
-          this.labelsMonths.push(snapshot.val()[key]);
+        if (key === "date") {
+          var dateString = moment
+            .unix(snapshot.val()[key])
+            .format("MM/DD/YYYY");
+          this.labelsMonths.push(dateString);
         }
       }
       // console.log(this.datasetsLine);
