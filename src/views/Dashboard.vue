@@ -5,7 +5,7 @@
     </div>
     <hr />
 
-    <v-expansion-panels v-model="panel" :readonly="readonly" multiple>
+    <v-expansion-panels v-model="panel" :readonly="readonly" multiple >
       <v-expansion-panel>
         <v-expansion-panel-header>Cultivo 1</v-expansion-panel-header>
         <v-expansion-panel-content>
