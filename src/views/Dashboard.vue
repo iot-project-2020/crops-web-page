@@ -247,6 +247,8 @@ export default {
     LineChart,
   },
   data: () => ({
+    panel: [0, 1],
+    readonly: false,
     numberData: [2, 10, 5, 9, 0, 6, 15],
     chartData: {
       Books: 24,
