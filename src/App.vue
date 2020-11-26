@@ -4,11 +4,7 @@
       <div>
         <v-navigation-drawer v-model="sidebar" app>
           <v-list>
-            <v-list-item
-              v-for="item in menuItems"
-              :key="item.title"
-              :to="item.path"
-            >
+            <v-list-item v-for="item in menuItems" :key="item.title" :to="item.path">
               <v-list-item-action>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-action>
@@ -16,15 +12,9 @@
             </v-list-item>
           </v-list>
         </v-navigation-drawer>
-        <v-app-bar
-          app
-          dark
-          src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-        >
+        <v-app-bar app dark src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
           <span class="hidden-sm-and-up">
-            <v-app-bar-nav-icon
-              @click.stop="sidebar = !drawer"
-            ></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click.stop="sidebar = !drawer"></v-app-bar-nav-icon>
           </span>
           <v-toolbar-title></v-toolbar-title>
           <v-toolbar-title>

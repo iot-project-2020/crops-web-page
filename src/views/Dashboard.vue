@@ -1,63 +1,56 @@
 <template>
   <div>
+    <br /><br />
+    <br />
     <div class="dashboard">
       <h1>Dashboard</h1>
     </div>
     <hr />
 
-    <v-expansion-panels v-model="panel" :readonly="readonly" multiple >
-      <v-expansion-panel>
-        <v-expansion-panel-header>Cultivo 1</v-expansion-panel-header>
+    <v-expansion-panels v-model="panel" :readonly="readonly" multiple>
+      <v-expansion-panel v-for="(firedata, i) in firedatas" :key="i">
+        <v-expansion-panel-header>Cultivo {{ i + 1 }}</v-expansion-panel-header>
         <v-expansion-panel-content>
-          <v-card
-            class="mx-auto"
-            outlined
-            shaped
-            elevation="13"
-            max-width="1000"
-            align="center"
-          >
+          <v-card class="mx-auto" outlined shaped elevation="13" max-width="1000" align="center">
             <v-container fluid>
               <v-row dense>
                 <v-col :cols="12">
                   <v-card>
-                    <LineChart
-                      :labels="labelsMonths"
-                      :datasets="datasetsLine"
-                      :title="'Grafico de Calidad de aire'"
-                    />
-                    <v-card-title
-                      v-text="'Grafico de Calidad de aire'"
-                    ></v-card-title>
-                    <v-card-text>
-                      El eje de las abscisas muestra el tiempo en que se tomo
-                      los datos y el eje de las ordenadas muetra el porcentaje
-                      de la calidad de aire
-                    </v-card-text>
+                    <LineChart :labels="firedata.CO2Label" :datasets="firedata.CO2Data" :title="'Grafico de Calidad de aire'" />
+                    <v-card-title v-text="'Grafico de Calidad de aire'"></v-card-title>
+                    <v-card-text> El eje de las abscisas muestra el tiempo en que se tomo los datos y el eje de las ordenadas muetra el porcentaje de la calidad de aire </v-card-text>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <v-expansion-panel>
+        <v-expansion-panel-header>Cultivo 1</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <v-card class="mx-auto" outlined shaped elevation="13" max-width="1000" align="center">
+            <v-container fluid>
+              <v-row dense>
+                <v-col :cols="12">
+                  <v-card>
+                    <LineChart :labels="labelsMonths" :datasets="datasetsLine" :title="'Grafico de Calidad de aire'" />
+                    <v-card-title v-text="'Grafico de Calidad de aire'"></v-card-title>
+                    <v-card-text> El eje de las abscisas muestra el tiempo en que se tomo los datos y el eje de las ordenadas muetra el porcentaje de la calidad de aire </v-card-text>
                   </v-card>
                 </v-col>
                 <v-col :cols="6">
                   <v-card>
                     <BarChart :labels="labelsMonths" :datasets="datasetsBar" />
-                    <v-card-title
-                      v-text="'Grafico de Radiacion mensual'"
-                    ></v-card-title>
-                    <v-card-text>
-                      El eje de las abscisas muestra los meses del año y el eje
-                      de las ordenadas muetra el porcentaje de radiacion
-                    </v-card-text>
+                    <v-card-title v-text="'Grafico de Radiacion mensual'"></v-card-title>
+                    <v-card-text> El eje de las abscisas muestra los meses del año y el eje de las ordenadas muetra el porcentaje de radiacion </v-card-text>
                   </v-card>
                 </v-col>
                 <v-col :cols="6">
                   <v-card>
                     <PieChart :labelChart="labelsPie" :dataChart="dataPie" />
-                    <v-card-title
-                      v-text="'Grafico de resumen de cultivos'"
-                    ></v-card-title>
-                    <v-card-text>
-                      EL grafico presenta un resumen de los cultivos. Si estos
-                      fueron exitosos, se perdieron o simplemente son normales
-                    </v-card-text>
+                    <v-card-title v-text="'Grafico de resumen de cultivos'"></v-card-title>
+                    <v-card-text> EL grafico presenta un resumen de los cultivos. Si estos fueron exitosos, se perdieron o simplemente son normales </v-card-text>
                   </v-card>
                 </v-col>
 
@@ -65,10 +58,7 @@
                   <v-card>
                     <RadarChart :labels="labelsRadar" :datasets="dataRadar" />
                     <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-                    <v-card-text>
-                      El eje de las abscisas muestra los meses del año y el eje
-                      de las ordenadas muetra el porcentaje de radiacion
-                    </v-card-text>
+                    <v-card-text> El eje de las abscisas muestra los meses del año y el eje de las ordenadas muetra el porcentaje de radiacion </v-card-text>
                   </v-card>
                 </v-col>
 
@@ -101,55 +91,28 @@
       <v-expansion-panel>
         <v-expansion-panel-header>Cultivo 2</v-expansion-panel-header>
         <v-expansion-panel-content>
-          <v-card
-            class="mx-auto"
-            outlined
-            shaped
-            elevation="13"
-            max-width="1000"
-            align="center"
-          >
+          <v-card class="mx-auto" outlined shaped elevation="13" max-width="1000" align="center">
             <v-container fluid>
               <v-row dense>
                 <v-col :cols="12">
                   <v-card>
-                    <LineChart
-                      :labels="labelsMonths"
-                      :datasets="datasetsLine"
-                      :title="'Grafico de Calidad de aire'"
-                    />
-                    <v-card-title
-                      v-text="'Grafico de Calidad de aire'"
-                    ></v-card-title>
-                    <v-card-text>
-                      El eje de las abscisas muestra el tiempo en que se tomo
-                      los datos y el eje de las ordenadas muetra el porcentaje
-                      de la calidad de aire
-                    </v-card-text>
+                    <LineChart :labels="labelsMonths" :datasets="datasetsLine" :title="'Grafico de Calidad de aire'" />
+                    <v-card-title v-text="'Grafico de Calidad de aire'"></v-card-title>
+                    <v-card-text> El eje de las abscisas muestra el tiempo en que se tomo los datos y el eje de las ordenadas muetra el porcentaje de la calidad de aire </v-card-text>
                   </v-card>
                 </v-col>
                 <v-col :cols="6">
                   <v-card>
                     <BarChart :labels="labelsMonths" :datasets="datasetsBar" />
-                    <v-card-title
-                      v-text="'Grafico de Radiacion mensual'"
-                    ></v-card-title>
-                    <v-card-text>
-                      El eje de las abscisas muestra los meses del año y el eje
-                      de las ordenadas muetra el porcentaje de radiacion
-                    </v-card-text>
+                    <v-card-title v-text="'Grafico de Radiacion mensual'"></v-card-title>
+                    <v-card-text> El eje de las abscisas muestra los meses del año y el eje de las ordenadas muetra el porcentaje de radiacion </v-card-text>
                   </v-card>
                 </v-col>
                 <v-col :cols="6">
                   <v-card>
                     <PieChart :labelChart="labelsPie" :dataChart="dataPie" />
-                    <v-card-title
-                      v-text="'Grafico de resumen de cultivos'"
-                    ></v-card-title>
-                    <v-card-text>
-                      EL grafico presenta un resumen de los cultivos. Si estos
-                      fueron exitosos, se perdieron o simplemente son normales
-                    </v-card-text>
+                    <v-card-title v-text="'Grafico de resumen de cultivos'"></v-card-title>
+                    <v-card-text> EL grafico presenta un resumen de los cultivos. Si estos fueron exitosos, se perdieron o simplemente son normales </v-card-text>
                   </v-card>
                 </v-col>
 
@@ -157,10 +120,7 @@
                   <v-card>
                     <RadarChart :labels="labelsRadar" :datasets="dataRadar" />
                     <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-                    <v-card-text>
-                      El eje de las abscisas muestra los meses del año y el eje
-                      de las ordenadas muetra el porcentaje de radiacion
-                    </v-card-text>
+                    <v-card-text> El eje de las abscisas muestra los meses del año y el eje de las ordenadas muetra el porcentaje de radiacion </v-card-text>
                   </v-card>
                 </v-col>
 
@@ -213,25 +173,29 @@ export default {
   data: () => ({
     panel: [0, 1],
     readonly: false,
-    numberData: [2, 10, 5, 9, 0, 6, 15],
-    chartData: {
-      Books: 24,
-      Magazine: 30,
-      Newspapers: 10,
-    },
+    firedatas: [
+      {
+        CO2Data: [],
+        CO2Label: [],
+        HumidityData: [],
+        HumidityLabel: [],
+        RadiationData: [],
+        RadiationLabel: [],
+      },
+      {
+        CO2Data: [],
+        CO2Label: [],
+        HumidityData: [],
+        HumidityLabel: [],
+        RadiationData: [],
+        RadiationLabel: [],
+      },
+    ],
     gradient: null,
     gradient2: null,
     dataPie: [3, 6, 13],
     labelsPie: ["Perdidos", "Estable", "Exitosos"],
-    labelsRadar: [
-      "Eating",
-      "Drinking",
-      "Sleeping",
-      "Designing",
-      "Coding",
-      "Cycling",
-      "Running",
-    ],
+    labelsRadar: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
     dataRadar: [
       {
         label: "My First dataset",
@@ -265,6 +229,43 @@ export default {
     datasetsLine: [10.0, 15.0, 10.0, 15.0],
   }),
   methods: {
+    loadCO2(snapshot) {
+      console.log("Se agrego un dato a COH2");
+      const item = snapshot.val();
+      const moment = require("moment");
+      for (var key in item) {
+        // console.log(key);
+        if (key === "data") {
+          this.firedatas[0].CO2Data.push(snapshot.val()[key]);
+        }
+        if (key === "date") {
+          var dateString = moment
+            .unix(snapshot.val()[key])
+            // .format("DD-MM-YYYY hh:mm:ss");
+            .format("hh:mm:ss");
+          this.firedatas[0].CO2Label.push(dateString);
+        }
+      }
+      console.log(this.firedatas[0].CO2Data);
+    },
+    fetchData() {
+      this.firedatas[0].CO2Data = [];
+      this.firedatas[0].CO2Label = [];
+      db.ref("crop-1/CO2/").on("child_added", this.loadCO2);
+
+      db.ref("crop-1/CO2/")
+        .limitToLast(1)
+        .on("child_changed", function (data) {
+          // window.location = "index.html";
+          console.log("Se cambio" + data);
+          // setCommentValues(postElement, data.key, data.val().text, data.val().author);`
+        });
+
+      db.ref("crop-1/CO2/").on("child_removed", function (data) {
+        console.log("Se elimino" + data);
+        // deleteComment(postElement, data.key);
+      });
+    },
     loadData(snapshot) {
       console.log("Se agrego un dato");
       // console.log(snapshot);
@@ -288,45 +289,12 @@ export default {
       // console.log(this.datasetsLine);
       // console.log(this.labelsMonths);
     },
-    fetchData() {
-      // db.ref("crop-1/CO2/")
-      //   .once("value")
-      //   .then((dataSnapshot) => {
-      //     console.log(dataSnapshot.val());
-      //     // this.schoolsArray = dataSnapshot.val();
-      //   });
-      this.datasetsLine = [];
-      this.labelsMonths = [];
-      db.ref("crop-1/CO2/").on("child_added", this.loadData);
-
-      db.ref("crop-1/CO2/")
-        .limitToLast(1)
-        .on("child_changed", function (data) {
-          // window.location = "index.html";
-          console.log("Se cambio" + data);
-          // setCommentValues(postElement, data.key, data.val().text, data.val().author);`
-        });
-
-      db.ref("crop-1/CO2/").on("child_removed", function (data) {
-        console.log("Se elimino" + data);
-        // deleteComment(postElement, data.key);
-      });
-    },
   },
 
-  created() {
-    // const customAction = {
-    //   getData: { method: "GET" },
-    // };
-    // this.resource = this.$resource("{node}.json", {}, customAction);
-    // this.loadData("crop-1/CO2/");
-  },
   mounted() {
     this.fetchData();
   },
 };
 </script>
 
-
-<style scoped>
-</style>
+<style scoped></style>
