@@ -135,7 +135,10 @@
           </v-row>
         </v-container>
       </v-item-group>
-
+      <v-expansion-panels v-model="panel" :readonly="readonly" multiple>
+        <v-expansion-panel>
+      <v-expansion-panel-header>Cultivo 1</v-expansion-panel-header>
+      <v-expansion-panel-content>
       <div class="text--primary">
         <!-- Using the elevation prop -->
 
@@ -153,9 +156,65 @@
           Radiación
           <h3>{{this.radiation}}</h3>
         </v-card>
-
+        <div class="my-6"></div>
+        <v-row
+            v-if="this.riegoset.riego==='no'"
+            align="center"
+            justify="space-around"
+        >
+          <v-btn
+              tile
+              color="success"
+          >
+            <v-icon left>
+              mdi-water
+            </v-icon>
+            Regar
+          </v-btn>
+        </v-row>
       </div>
+      </v-expansion-panel-content>
+      </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Cultivo 2</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <div class="text--primary">
+              <!-- Using the elevation prop -->
 
+              <v-card class="mx-auto pa-6">
+                Humedad del suelo
+                <h3>{{this.humidity}}</h3>
+              </v-card>
+              <div class="my-6"></div>
+              <v-card class="mx-auto pa-6">
+                CO2
+                <h3>{{this.co2}}</h3>
+              </v-card>
+              <div class="my-6"></div>
+              <v-card class="mx-auto pa-6">
+                Radiación
+                <h3>{{this.radiation}}</h3>
+              </v-card>
+              <div class="my-6"></div>
+              <v-row
+                  v-if="this.riegoset.riego==='no'"
+                  align="center"
+                  justify="space-around"
+              >
+                <v-btn
+                    tile
+                    color="success"
+                >
+                  <v-icon left>
+                    mdi-water
+                  </v-icon>
+                  Regar
+                </v-btn>
+              </v-row>
+            </div>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </v-app>
   </div>
 
