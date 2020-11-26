@@ -3,7 +3,7 @@ import { Line } from "vue-chartjs";
 
 export default {
   extends: Line,
-  props: ["labels", "datasets"],
+  props: ["labels", "datasets", "title"],
   mounted() {
     this.render();
   },
@@ -42,7 +42,7 @@ export default {
           maintainAspectRatio: false,
           title: {
             display: true,
-            text: "My Data",
+            text: this.title,
           },
         }
       );

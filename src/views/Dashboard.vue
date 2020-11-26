@@ -24,6 +24,7 @@
                     <LineChart
                       :labels="labelsMonths"
                       :datasets="datasetsLine"
+                      :title="'Grafico de Calidad de aire'"
                     />
                     <v-card-title
                       v-text="'Grafico de Calidad de aire'"
@@ -115,52 +116,40 @@
                     <LineChart
                       :labels="labelsMonths"
                       :datasets="datasetsLine"
+                      :title="'Grafico de Calidad de aire'"
                     />
                     <v-card-title
                       v-text="'Grafico de Calidad de aire'"
                     ></v-card-title>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn icon>
-                        <v-icon>mdi-cached</v-icon>
-                      </v-btn>
-
-                      <v-btn icon>
-                        <v-icon>mdi-bookmark</v-icon>
-                      </v-btn>
-                    </v-card-actions>
+                    <v-card-text>
+                      El eje de las abscisas muestra el tiempo en que se tomo
+                      los datos y el eje de las ordenadas muetra el porcentaje
+                      de la calidad de aire
+                    </v-card-text>
                   </v-card>
                 </v-col>
                 <v-col :cols="6">
                   <v-card>
                     <BarChart :labels="labelsMonths" :datasets="datasetsBar" />
-                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn icon>
-                        <v-icon>mdi-cached</v-icon>
-                      </v-btn>
-
-                      <v-btn icon>
-                        <v-icon>mdi-bookmark</v-icon>
-                      </v-btn>
-                    </v-card-actions>
+                    <v-card-title
+                      v-text="'Grafico de Radiacion mensual'"
+                    ></v-card-title>
+                    <v-card-text>
+                      El eje de las abscisas muestra los meses del año y el eje
+                      de las ordenadas muetra el porcentaje de radiacion
+                    </v-card-text>
                   </v-card>
                 </v-col>
                 <v-col :cols="6">
                   <v-card>
                     <PieChart :labelChart="labelsPie" :dataChart="dataPie" />
-                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn icon>
-                        <v-icon>mdi-cached</v-icon>
-                      </v-btn>
-
-                      <v-btn icon>
-                        <v-icon>mdi-bookmark</v-icon>
-                      </v-btn>
-                    </v-card-actions>
+                    <v-card-title
+                      v-text="'Grafico de resumen de cultivos'"
+                    ></v-card-title>
+                    <v-card-text>
+                      EL grafico presenta un resumen de los cultivos. Si estos
+                      fueron exitosos, se perdieron o simplemente son normales
+                    </v-card-text>
                   </v-card>
                 </v-col>
 
@@ -168,16 +157,10 @@
                   <v-card>
                     <RadarChart :labels="labelsRadar" :datasets="dataRadar" />
                     <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn icon>
-                        <v-icon>mdi-cached</v-icon>
-                      </v-btn>
-
-                      <v-btn icon>
-                        <v-icon>mdi-bookmark</v-icon>
-                      </v-btn>
-                    </v-card-actions>
+                    <v-card-text>
+                      El eje de las abscisas muestra los meses del año y el eje
+                      de las ordenadas muetra el porcentaje de radiacion
+                    </v-card-text>
                   </v-card>
                 </v-col>
 
@@ -238,7 +221,7 @@ export default {
     },
     gradient: null,
     gradient2: null,
-    dataPie: [1, 2, 3],
+    dataPie: [3, 6, 13],
     labelsPie: ["Perdidos", "Estable", "Exitosos"],
     labelsRadar: [
       "Eating",
@@ -297,7 +280,8 @@ export default {
         if (key === "date") {
           var dateString = moment
             .unix(snapshot.val()[key])
-            .format("MM/DD/YYYY");
+            // .format("DD-MM-YYYY hh:mm:ss");
+            .format("hh:mm:ss");
           this.labelsMonths.push(dateString);
         }
       }
