@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="settings">
     <v-app id="inspire">
       <v-item-group mandatory>
         <v-container>
@@ -7,124 +7,167 @@
             <v-col
                 v-for="n in 1"
                 :key="n"
-                cols="12"
-                md="4"
+                cols="6"
+                md="3"
             >
               <v-item v-slot="{ active, toggle }">
-                <v-card
+                <a @click="primavera()"><v-card
                     :color="active ? 'primary' : ''"
                     class="d-flex align-center"
                     dark
                     height="200"
                     @click="toggle"
                 >
+                  <div  v-if="!active" class="display-3 flex-grow-1 text-center">Primavera</div>
+
                   <v-scroll-y-transition>
                     <div
                         v-if="active"
                         class="display-3 flex-grow-1 text-center"
                     >
-                      Primavera
-                    </div>
-                  </v-scroll-y-transition>
-                </v-card>
-              </v-item>
-            </v-col>
-            <v-col
-                v-for="n in 1"
-                :key="n"
-                cols="12"
-                md="4"
-            >
-              <v-item v-slot="{ active, toggle }">
-                <v-card
-                    :color="active ? 'primary' : ''"
-                    class="d-flex align-center"
-                    dark
-                    height="200"
-                    @click="toggle"
-                >
-                  <v-scroll-y-transition>
-                    <div
-                        v-if="active"
-                        class="display-3 flex-grow-1 text-center"
-                    >
-                      Invierno
-                    </div>
-                  </v-scroll-y-transition>
-                </v-card>
-              </v-item>
-
-            </v-col>
-            <v-col
-                v-for="n in 1"
-                :key="n"
-                cols="12"
-                md="4"
-            >
-              <v-item v-slot="{ active, toggle }">
-                <v-card
-                    :color="active ? 'primary' : ''"
-                    class="d-flex align-center"
-                    dark
-                    height="200"
-                    @click="toggle"
-                >
-                  <v-scroll-y-transition>
-
-                    <div
-                        v-if="active"
-                        class="display-3 flex-grow-1 text-center"
-                    >
-
                       <v-img
-                          src="https://www.hola.com/imagenes/en-forma/201703271199/como-ponerse-en-forma-en-un-mes-belleza/0-3-966/enforma-verano-z.jpg"
+                          src="https://www.ambientum.com/wp-content/uploads/2018/03/paisajes-primavera.jpg"
                           height="200"
+                          width="425"
                           class="grey darken-4"
-                      >Verano</v-img>
+                      ><div class="display-3 flex-grow-1 text-center">Primavera</div></v-img>
                     </div>
                   </v-scroll-y-transition>
-                </v-card>
+                </v-card></a>
+              </v-item>
+            </v-col>
+            <v-col
+                v-for="n in 1"
+                :key="n"
+                cols="6"
+                md="3"
+            >
+              <v-item v-slot="{ active, toggle }">
+                <a @click="invierno()"><v-card
+                    :color="active ? 'primary' : ''"
+                    class="d-flex align-center"
+                    dark
+                    height="200"
+                    @click="toggle"
+                >
+                  <div  v-if="!active" class="display-3 flex-grow-1 text-center">Invierno</div>
+
+                  <v-scroll-y-transition>
+                    <div
+                        v-if="active"
+                        class="display-3 flex-grow-1 text-center"
+                    >
+                      <v-img
+                          src="https://conceptodefinicion.de/wp-content/uploads/2017/05/Invierno.jpg"
+                          height="200"
+                          width="425"
+                          class="grey darken-4"
+                      ><div class="display-3 flex-grow-1 text-center">Invierno</div></v-img>
+                    </div>
+                  </v-scroll-y-transition>
+                </v-card></a>
+              </v-item>
+            </v-col>
+            <v-col
+                v-for="n in 1"
+                :key="n"
+                cols="6"
+                md="3"
+            >
+              <v-item v-slot="{ active, toggle }">
+                <a @click="verano()"><v-card
+                    :color="active ? 'primary' : ''"
+                    class="d-flex align-center"
+                    dark
+                    height="200"
+                    @click="toggle"
+                >
+                  <div  v-if="!active" class="display-3 flex-grow-1 text-center">Verano</div>
+
+                  <v-scroll-y-transition>
+                    <div
+                        v-if="active"
+                        class="display-3 flex-grow-1 text-center"
+                    >
+                      <v-img
+                          src="https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/06/20/15926379712386.jpg"
+                          height="200"
+                          width="425"
+                          class="grey darken-4"
+                      ><div class="display-3 flex-grow-1 text-center">Verano</div></v-img>
+                    </div>
+                  </v-scroll-y-transition>
+                </v-card></a>
+              </v-item>
+            </v-col>
+            <v-col
+                v-for="n in 1"
+                :key="n"
+                cols="6"
+                md="3"
+            >
+              <v-item v-slot="{ active, toggle }">
+                <a @click="otoño()"><v-card
+                    :color="active ? 'primary' : ''"
+                    class="d-flex align-center"
+                    dark
+                    height="200"
+                    @click="toggle"
+                >
+                  <div  v-if="!active" class="display-3 flex-grow-1 text-center">Otoño</div>
+
+                  <v-scroll-y-transition>
+                    <div
+                        v-if="active"
+                        class="display-3 flex-grow-1 text-center"
+                    >
+                      <v-img
+                          src="https://www.65ymas.com/uploads/s1/18/96/82/bigstock-autumn-park-nature-colorful-t-307365547.jpeg"
+                          height="200"
+                          width="425"
+                          class="grey darken-4"
+                      ><div class="display-3 flex-grow-1 text-center">Otoño</div></v-img>
+                    </div>
+                  </v-scroll-y-transition>
+                </v-card></a>
               </v-item>
             </v-col>
           </v-row>
         </v-container>
       </v-item-group>
 
-
       <div class="text--primary">
         <!-- Using the elevation prop -->
-        <v-hover>
-          <template v-slot:default="{ hover }">
-            <v-card
-                :elevation="hover ? 24 : 6"
-                class="mx-auto pa-6"
-            >
-              Humedad del suelo
 
-            </v-card>
-          </template>
-        </v-hover>
-
+        <v-card class="mx-auto pa-6">
+          Humedad del suelo
+          <h3>{{this.humidity}}</h3>
+        </v-card>
         <div class="my-6"></div>
-        <!-- Using a dynamic class -->
-        <v-hover>
-          <template v-slot:default="{ hover }">
-            <div
-                :class="`elevation-${hover ? 24 : 6}`"
-                class="mx-auto pa-6 transition-swing"
-            >
-              Class based elevation
-            </div>
-          </template>
-        </v-hover>
+        <v-card class="mx-auto pa-6">
+          CO2
+          <h3>{{this.co2}}</h3>
+        </v-card>
+        <div class="my-6"></div>
+        <v-card class="mx-auto pa-6">
+          Radiación
+          <h3>{{this.radiation}}</h3>
+        </v-card>
+
       </div>
+
     </v-app>
   </div>
+
 </template>
 
 <script>
 export default {
   data:()=>({
+    humedadsuelo:'',
+    temperatura:'',
+    radiacion:'',
+    carbono:'',
     resultArray: [],
     resultradiation: [],
     resulHumidity: [],
@@ -154,6 +197,30 @@ export default {
   }),
 
   methods: {
+    primavera(){
+      this.humedadsuelo=30;
+      this.temperatura=50;
+      this.radiacion= 20;
+      this.carbono=10;
+    },
+    otoño(){
+      this.humedadsuelo=30;
+      this.temperatura=50;
+      this.radiacion= 20;
+      this.carbono=10;
+    },
+    invierno(){
+      this.humedadsuelo=30;
+      this.temperatura=50;
+      this.radiacion= 20;
+      this.carbono=10;
+    },
+    verano(){
+      this.humedadsuelo=10;
+      this.temperatura=40;
+      this.radiacion= 50;
+      this.carbono=20;
+    },
     loadDataco2(node) {
 
       this.resource
@@ -182,7 +249,7 @@ export default {
             console.log(data);
             this.resultradiation= [];
             for (let key in data) {
-              const f = data[key];
+              const f = data[key].data;
               this.resultradiation.push(f);
             }
             this.radiation=this.resultradiation.pop();
@@ -204,7 +271,6 @@ export default {
               resultdht.push(f);
             }
 
-            document.getElementById("dhtH").innerHTML = resultdht.pop();
           });
 
     },
@@ -223,7 +289,6 @@ export default {
               resultdhtT.push(f);
             }
 
-            document.getElementById("dhtT").innerHTML = resultdhtT.pop();
           });
 
     },
@@ -241,6 +306,7 @@ export default {
               this.resultHumidity.push(f);
             }
             this.humidity=this.resultHumidity.pop();
+            console.log(this.humidity)
           });
 
     },
@@ -249,10 +315,11 @@ export default {
       // this.resource.putDataCO2(this.CO2);
       // this.resource.putDataradiation(this.radiationF);
       // this.resource.putDatahumidity(this.HumidityF);
-      if(parseFloat(this.humidity)>10)
+      if(parseFloat(this.humidity)>=parseFloat(this.humedadsuelo) && parseFloat(this.co2)>=parseFloat(this.carbono) && parseFloat(this.radiation)>=parseFloat(this.radiacion) )
         this.riegoset.riego="yes"
 
       this.resource.putDatariego(this.riegoset);
+
     }
   },
 
@@ -268,7 +335,7 @@ export default {
     this.resource = this.$resource("{node}.json", {}, customAction);
     this.loadDataco2("crop-1/CO2");
     this.loadHumidity("crop-1/Humidity");
-    this.loadradiation("crop-1/radiation");
+    this.loadradiation("crop-1/Radiation");
     this.loadDHT("crop-1/DHT/Humidity");
     this.loadDHTtemperature("crop-1/DHT/Temperature");
     this.regar();
