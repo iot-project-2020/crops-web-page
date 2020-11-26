@@ -5,17 +5,25 @@ export default {
   extends: Line,
   props: ["labels", "datasets"],
   mounted() {
-    this.renderLineChart();
+    this.render();
   },
   watch: {
-    data: function () {
-      this.$data._chart.update();
-      //this.renderChart(this.data, this.options);
-      this.renderLineChart();
+    // data: function () {
+    //   this.$data._chart.update();
+    //   //this.renderChart(this.data, this.options);
+    //   this.render();
+    // },
+    labels(to, from) {
+      console.log(to + from);
+      this.render();
+    },
+    datasets(to, from) {
+      console.log(to + from);
+      this.render();
     },
   },
   methods: {
-    renderLineChart() {
+    render() {
       this.renderChart(
         {
           labels: this.labels,

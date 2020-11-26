@@ -3,109 +3,230 @@
     <div class="dashboard">
       <h1>Dashboard</h1>
     </div>
-    <p>{{ data }}</p>
     <hr />
 
-    <v-card
-      class="mx-auto"
-      outlined
-      shaped
-      elevation="13"
-      max-width="1000"
-      align="center"
-    >
-      <v-container fluid>
-        <v-row dense>
-          <v-col :cols="12">
-            <v-card>
-              <LineChart :labels="labelsMonths" :datasets="datasetsLine" />
-              <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-cached</v-icon>
-                </v-btn>
+    <v-expansion-panels v-model="panel" :readonly="readonly" multiple>
+      <v-expansion-panel>
+        <v-expansion-panel-header>Cultivo 1</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <v-card
+            class="mx-auto"
+            outlined
+            shaped
+            elevation="13"
+            max-width="1000"
+            align="center"
+          >
+            <v-container fluid>
+              <v-row dense>
+                <v-col :cols="12">
+                  <v-card>
+                    <LineChart
+                      :labels="labelsMonths"
+                      :datasets="datasetsLine"
+                    />
+                    <v-card-title
+                      v-text="'Grafico de Calidad de aire'"
+                    ></v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-cached</v-icon>
+                      </v-btn>
 
-                <v-btn icon>
-                  <v-icon>mdi-bookmark</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-          <v-col :cols="6">
-            <v-card>
-              <BarChart :labels="labelsMonths" :datasets="datasetsBar" />
-              <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-cached</v-icon>
-                </v-btn>
+                      <v-btn icon>
+                        <v-icon>mdi-bookmark</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+                <v-col :cols="6">
+                  <v-card>
+                    <BarChart :labels="labelsMonths" :datasets="datasetsBar" />
+                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-cached</v-icon>
+                      </v-btn>
 
-                <v-btn icon>
-                  <v-icon>mdi-bookmark</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-          <v-col :cols="6">
-            <v-card>
-              <PieChart :labelChart="labelsPie" :dataChart="dataPie" />
-              <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-cached</v-icon>
-                </v-btn>
+                      <v-btn icon>
+                        <v-icon>mdi-bookmark</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+                <v-col :cols="6">
+                  <v-card>
+                    <PieChart :labelChart="labelsPie" :dataChart="dataPie" />
+                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-cached</v-icon>
+                      </v-btn>
 
-                <v-btn icon>
-                  <v-icon>mdi-bookmark</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
+                      <v-btn icon>
+                        <v-icon>mdi-bookmark</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
 
-          <v-col :cols="12">
-            <v-card>
-              <RadarChart :labels="labelsRadar" :datasets="dataRadar" />
-              <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-cached</v-icon>
-                </v-btn>
+                <v-col :cols="12">
+                  <v-card>
+                    <RadarChart :labels="labelsRadar" :datasets="dataRadar" />
+                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-cached</v-icon>
+                      </v-btn>
 
-                <v-btn icon>
-                  <v-icon>mdi-bookmark</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
+                      <v-btn icon>
+                        <v-icon>mdi-bookmark</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
 
-          <v-col :cols="12">
-            <v-card>
-              <!-- <AreaChart
+                <v-col :cols="12">
+                  <v-card>
+                    <!-- <AreaChart
             :labels="labelsArea"
             :datasets="dataArea"
             :gradient="gradient"
             :gradient2="gradient2"
           /> -->
-              <v-card-title v-text="'Grafico de Algo'"></v-card-title>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-cached</v-icon>
-                </v-btn>
+                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-cached</v-icon>
+                      </v-btn>
 
-                <v-btn icon>
-                  <v-icon>mdi-bookmark</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card>
+                      <v-btn icon>
+                        <v-icon>mdi-bookmark</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <v-expansion-panel>
+        <v-expansion-panel-header>Cultivo 1</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <v-card
+            class="mx-auto"
+            outlined
+            shaped
+            elevation="13"
+            max-width="1000"
+            align="center"
+          >
+            <v-container fluid>
+              <v-row dense>
+                <v-col :cols="12">
+                  <v-card>
+                    <LineChart
+                      :labels="labelsMonths"
+                      :datasets="datasetsLine"
+                    />
+                    <v-card-title
+                      v-text="'Grafico de Calidad de aire'"
+                    ></v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-cached</v-icon>
+                      </v-btn>
+
+                      <v-btn icon>
+                        <v-icon>mdi-bookmark</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+                <v-col :cols="6">
+                  <v-card>
+                    <BarChart :labels="labelsMonths" :datasets="datasetsBar" />
+                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-cached</v-icon>
+                      </v-btn>
+
+                      <v-btn icon>
+                        <v-icon>mdi-bookmark</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+                <v-col :cols="6">
+                  <v-card>
+                    <PieChart :labelChart="labelsPie" :dataChart="dataPie" />
+                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-cached</v-icon>
+                      </v-btn>
+
+                      <v-btn icon>
+                        <v-icon>mdi-bookmark</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+
+                <v-col :cols="12">
+                  <v-card>
+                    <RadarChart :labels="labelsRadar" :datasets="dataRadar" />
+                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-cached</v-icon>
+                      </v-btn>
+
+                      <v-btn icon>
+                        <v-icon>mdi-bookmark</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+
+                <v-col :cols="12">
+                  <v-card>
+                    <!-- <AreaChart
+            :labels="labelsArea"
+            :datasets="dataArea"
+            :gradient="gradient"
+            :gradient2="gradient2"
+          /> -->
+                    <v-card-title v-text="'Grafico de Algo'"></v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-cached</v-icon>
+                      </v-btn>
+
+                      <v-btn icon>
+                        <v-icon>mdi-bookmark</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
   </div>
 </template>
 
@@ -126,7 +247,6 @@ export default {
     LineChart,
   },
   data: () => ({
-    data: [],
     numberData: [2, 10, 5, 9, 0, 6, 15],
     chartData: {
       Books: 24,
@@ -168,20 +288,7 @@ export default {
         data: [28, 48, 40, 19, 96, 27, 100],
       },
     ],
-    labelsMonths: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ],
+    labelsMonths: ["January", "February", "March", "April", "May", "June"],
     datasetsBar: [
       {
         label: "Data One",
@@ -189,52 +296,46 @@ export default {
         data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
       },
     ],
-    datasetsLine: [10.0, 20.0],
+    datasetsLine: [10.0, 15.0, 10.0, 15.0],
   }),
   methods: {
-    loadData(node) {
-      this.resource
-        .getData({ node: node })
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          // console.log(data);
-          const resultArray = [];
-          for (let key in data) {
-            console.log(data[key]);
-            const f = parseFloat(data[key]["data"]);
-            resultArray.push(f);
-            // this.datasetsLine.push(f);
-          }
-          console.log(resultArray);
-          this.datasetsLine = resultArray;
-        });
+    loadData(snapshot) {
+      console.log("Se agrego un dato");
+      // console.log(snapshot);
+      const item = snapshot.val();
 
-      //   for (var i in resultArray) {
-      //     console.log(i + "");
-      //     this.datasetsLine.push(i);
-      //   }
-      //   this.numberData = resultArray;
-      //   console.log(this.numberData);
-      //   this.datasetsLine[0].data = this.numberData;
+      for (var key in item) {
+        // console.log(key);
+        if (key === "data") {
+          // console.log(snapshot.val()[key]);
+          this.datasetsLine.push(snapshot.val()[key]);
+          // this.loadData(snapshot.val()[key]);
+        }
+        if (key === "hour") {
+          this.labelsMonths.push(snapshot.val()[key]);
+        }
+      }
+      // console.log(this.datasetsLine);
+      // console.log(this.labelsMonths);
     },
     fetchData() {
-      db.ref("crop-1/CO2/")
-        .once("value")
-        .then((dataSnapshot) => {
-          console.log(dataSnapshot.val());
-          // this.schoolsArray = dataSnapshot.val();
-        });
+      // db.ref("crop-1/CO2/")
+      //   .once("value")
+      //   .then((dataSnapshot) => {
+      //     console.log(dataSnapshot.val());
+      //     // this.schoolsArray = dataSnapshot.val();
+      //   });
+      this.datasetsLine = [];
+      this.labelsMonths = [];
+      db.ref("crop-1/CO2/").on("child_added", this.loadData);
 
-      db.ref("crop-1/CO2/").on("child_added", function (data) {
-        console.log("Se agrego " + data);
-      });
-      db.ref("crop-1/CO2/").on("child_changed", function (data) {
-        // window.location = "index.html";
-        console.log("Se cambio" + data);
-        // setCommentValues(postElement, data.key, data.val().text, data.val().author);`
-      });
+      db.ref("crop-1/CO2/")
+        .limitToLast(1)
+        .on("child_changed", function (data) {
+          // window.location = "index.html";
+          console.log("Se cambio" + data);
+          // setCommentValues(postElement, data.key, data.val().text, data.val().author);`
+        });
 
       db.ref("crop-1/CO2/").on("child_removed", function (data) {
         console.log("Se elimino" + data);
@@ -253,8 +354,6 @@ export default {
   mounted() {
     this.fetchData();
   },
-  beforeUpdate() {},
-  serverPrefetch() {},
 };
 </script>
 
