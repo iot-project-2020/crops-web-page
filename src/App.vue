@@ -1,15 +1,30 @@
 <template>
+
   <div id="app">
     <v-app id="inspire">
-      <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/crops/dashboard">Dashboard</router-link> |
-        <router-link to="/crops/settings">Settings</router-link> |
-        <router-link to="/about">About</router-link> 
+      <div>
+        <v-toolbar
+            dark
+            prominent
+            src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+        >
+
+
+
+
+            <div id="nav">
+              <router-link to="/">Home</router-link> |
+              <router-link to="/crops/dashboard">Dashboard</router-link> |
+              <router-link to="/crops/settings">Settings</router-link> |
+              <router-link to="/about">About</router-link>
+            </div>
+
+        </v-toolbar>
       </div>
       <router-view />
     </v-app>
   </div>
+
 </template>
 
 <style lang="scss">
