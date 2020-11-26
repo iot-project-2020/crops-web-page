@@ -13,12 +13,12 @@ export default {
     //   //this.renderChart(this.data, this.options);
     //   this.render();
     // },
-    labels(to, from) {
-      console.log(to + from);
+    labels() {
+      // console.log(to + from);
       this.render();
     },
-    datasets(to, from) {
-      console.log(to + from);
+    datasets() {
+      // console.log(to + from);
       this.render();
     },
   },
