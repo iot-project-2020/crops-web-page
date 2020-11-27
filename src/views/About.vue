@@ -4,6 +4,14 @@
     <v-card class="mx-auto" max-width="1500">
       <v-container fluid>
         <v-row dense>
+          <v-col v-for="(user, i) in users" :key="i" :cols="user.flex">
+            <v-card :href="user.url">
+              <v-avatar color="accent" rounded size="190">
+                <span class="white--text headline">{{ user.name }}</span>
+              </v-avatar>
+              <v-card-title v-text="user.fullname"></v-card-title>
+            </v-card>
+          </v-col>
           <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
             <v-card :href="card.url">
               <v-img
@@ -15,14 +23,6 @@
                 <v-card-title v-text="card.title"></v-card-title>
               </v-img>
               <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
-            </v-card>
-          </v-col>
-          <v-col v-for="(user, i) in users" :key="i" :cols="user.flex">
-            <v-card :href="user.url">
-              <v-avatar color="accent" rounded size="190">
-                <span class="white--text headline">{{ user.name }}</span>
-              </v-avatar>
-              <v-card-title v-text="user.fullname"></v-card-title>
             </v-card>
           </v-col>
         </v-row>
@@ -59,11 +59,13 @@ export default {
     ],
     cards: [
       {
-        title: "Pre-fab homes",
-        src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
+        title: "GitHub",
+        src:
+          "https://logodownload.org/wp-content/uploads/2019/08/github-logo-2.png",
         flex: 12,
-        url: "",
-        subtitle: "Fulano",
+        url: "https://github.com/iot-project-2020",
+        subtitle:
+          "Nuestro repositorio donde almacenamos el codigo de esta pagina y los nodos para el sistema de riego inteligente se almacena aqui ",
       },
 
       {
@@ -72,7 +74,7 @@ export default {
           "https://img.etimg.com/thumb/height-480,width-640,imgsize-53190,msid-67959578/google-docs.jpg",
         flex: 6,
         url:
-          "https://docs.google.com/document/d/14vixXxDeULvwnHqfA3p2C_pY6zErREYdZwA-T1xX12w/edit?usp=sharing",
+          "https://drive.google.com/file/d/1JEjq-S9Gk-JJdBaY6Hw6dpPOVC_34t4g/view?usp=sharing",
         subtitle:
           "Puedes ver el perfil del proyecto haciendo click en esta imagen",
       },
@@ -84,21 +86,15 @@ export default {
         subtitle: "Fulano",
       },
       {
-        title: "GitHub",
-        src:
-          "https://logodownload.org/wp-content/uploads/2019/08/github-logo-2.png",
+        title: "Pre-fab homes",
+        src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
         flex: 12,
-        url: "https://github.com/iot-project-2020",
-        subtitle:
-          "Nuestro repositorio donde almacenamos el codigo de esta pagina y los nodos para el sistema de riego inteligente se almacena aqui ",
+        url: "",
+        subtitle: "Fulano",
       },
     ],
   }),
   methods: {
-    ale(url) {
-      console.log(url);
-      alert("as");
-    },
   },
 };
 </script>
