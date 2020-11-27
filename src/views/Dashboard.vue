@@ -73,10 +73,10 @@
                       :datasets="firedata.RadiationData"
                     />
                     <v-card-title v-text="'Grafico CO2'"></v-card-title>
-                    <v-card-text>
+                    <!-- <v-card-text>
                       El eje de las abscisas muestra los meses del año y el eje
                       de las ordenadas muetra el porcentaje de radiacion
-                    </v-card-text>
+                    </v-card-text> -->
                   </v-card>
                 </v-col>
               </v-row>
@@ -187,6 +187,7 @@ import BarChart from "../components/BarChart.vue";
 import RadarChart from "../components/RadarChart.vue";
 import LineChart from "../components/LineChart.vue";
 import { db } from "../firebase";
+
 export default {
   name: "Dashboard",
   components: {
