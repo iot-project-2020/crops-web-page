@@ -1,5 +1,6 @@
 <template>
   <div>
+ 
     <v-carousel
       cycle
       v-model="model"
