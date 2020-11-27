@@ -41,6 +41,7 @@
           </v-toolbar-items>
         </v-app-bar>
       </div>
+      <br /><br />
       <router-view />
     </v-app>
   </div>

@@ -1,7 +1,6 @@
 <template>
   <div>
     <br /><br />
-    <br />
     <div class="dashboard">
       <h1>Dashboard</h1>
     </div>
