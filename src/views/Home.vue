@@ -1,6 +1,5 @@
 <template>
   <div>
- 
     <v-carousel
       cycle
       v-model="model"
@@ -17,36 +16,43 @@
     <v-card class="mx-auto" max-width="1500">
       <v-container fluid>
         <v-row dense>
-          <v-col v-for="cultivo in cultivos" :key="cultivo.title" :cols="cultivo.flex">
+          <v-col
+            v-for="cultivo in cultivos"
+            :key="cultivo.title"
+            :cols="cultivo.flex"
+          >
             <v-card>
               <v-img
-                  :src="cultivo.src"
-                  class="white--text align-end"
-                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                  height="200px"
+                :src="cultivo.src"
+                class="white--text align-end"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                height="200px"
               >
                 <v-card-title v-text="cultivo.title"></v-card-title>
               </v-img>
 
-              <h3>Humedad de la tierra: {{cultivo.text}} %</h3>
+              <h3>Humedad de la tierra: {{ cultivo.text }} %</h3>
               <v-progress-circular
-                  v-if="cultivo.text>=50"
-                  :width="4"
-                  color="green"
-                  indeterminate
-              >Estable</v-progress-circular>
+                v-if="cultivo.text >= 50"
+                :width="4"
+                color="green"
+                indeterminate
+                >Estable</v-progress-circular
+              >
               <v-progress-circular
-                  v-if="cultivo.text>30 && cultivo.text<50 "
-                  :width="4"
-                  color="yellow"
-                  indeterminate
-              >Intermedio</v-progress-circular>
+                v-if="cultivo.text > 30 && cultivo.text < 50"
+                :width="4"
+                color="yellow"
+                indeterminate
+                >Intermedio</v-progress-circular
+              >
               <v-progress-circular
-                  v-if="cultivo.text<30"
-                  :width="4"
-                  color="red"
-                  indeterminate
-              >Critico</v-progress-circular>
+                v-if="cultivo.text < 30"
+                :width="4"
+                color="red"
+                indeterminate
+                >Critico</v-progress-circular
+              >
             </v-card>
           </v-col>
           <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
@@ -62,7 +68,6 @@
               <v-card-text v-text="card.text"></v-card-text>
             </v-card>
           </v-col>
-
         </v-row>
       </v-container>
     </v-card>
@@ -70,10 +75,8 @@
 </template>
 
 <script>
-
 export default {
-  components: {
-  },
+  components: {},
   data: () => ({
     humidity: 0,
     humidity2: 0,
@@ -128,23 +131,23 @@ export default {
         title: "Sensores de humedad",
         src: "https://grupoelectrostore.com/wp-content/uploads/2020/07/f2.png",
         text:
-            "Para elegir un sensor se deben de considerar los siguientes aspectos: Conocer el funcionamiento teórico del aparato; para en el  futuro determinar si el funcionamiento de este es correcto. Conocer cuál es el grado de error inherente que el proveedor establece para el aparato que se pretende elegir; coyuntural para en un futuro poder determinar una adecuada calibración en campo.",
+          "Para elegir un sensor se deben de considerar los siguientes aspectos: Conocer el funcionamiento teórico del aparato; para en el  futuro determinar si el funcionamiento de este es correcto. Conocer cuál es el grado de error inherente que el proveedor establece para el aparato que se pretende elegir; coyuntural para en un futuro poder determinar una adecuada calibración en campo.",
         flex: 7,
       },
       {
         title: "Sensores de calidad de aire",
         src:
-            "https://lh3.googleusercontent.com/proxy/fVesfVXZMh53HQiWNz1J1j3EmjwdeMf__kKNsRyqY0APjC_DaNfzlYelQZ-zQ9YDmScWcozi0_ubiyAEoncmlhCrazWDS6mJQ4Ql4p4_Igzqf6SOi3xdtmfePBQCe3I",
+          "https://lh3.googleusercontent.com/proxy/fVesfVXZMh53HQiWNz1J1j3EmjwdeMf__kKNsRyqY0APjC_DaNfzlYelQZ-zQ9YDmScWcozi0_ubiyAEoncmlhCrazWDS6mJQ4Ql4p4_Igzqf6SOi3xdtmfePBQCe3I",
         text:
-            "Los sensores de calidad de aire son dispositivos usados para la detección de contaminantes en el aire. Esto incluye partículas, contaminantes y gases nocivos que pueden ser perjudiciales para la salud humana. Se utilizan en aplicaciones como el monitoreo de la calidad del aire, la detección de gas en industrias, controladores de combustión y generadores de oxígeno en aviones. Los sensores de compuestos orgánicos volátiles (VOC) disponibles son capaces de detectar químicos volátiles y contaminantes olorosos.",
+          "Los sensores de calidad de aire son dispositivos usados para la detección de contaminantes en el aire. Esto incluye partículas, contaminantes y gases nocivos que pueden ser perjudiciales para la salud humana. Se utilizan en aplicaciones como el monitoreo de la calidad del aire, la detección de gas en industrias, controladores de combustión y generadores de oxígeno en aviones. Los sensores de compuestos orgánicos volátiles (VOC) disponibles son capaces de detectar químicos volátiles y contaminantes olorosos.",
         flex: 5,
       },
-
     ],
-    cultivos:[
+    cultivos: [
       {
         title: "Cultivo 1",
-        src: "https://i.pinimg.com/originals/15/b5/33/15b5330eb543d3166b6132d48c813d20.jpg",
+        src:
+          "https://i.pinimg.com/originals/15/b5/33/15b5330eb543d3166b6132d48c813d20.jpg",
         text: 0,
         estado: "",
         flex: 6,
@@ -156,49 +159,45 @@ export default {
         estado: "",
         flex: 6,
       },
-
     ],
   }),
   methods: {
     loadHumidity(node) {
       let resulthumidity = [];
       this.resource
-          .getData({ node: node })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            resulthumidity = [];
-            for (let key in data) {
-              const f = data[key].data;
-              resulthumidity.push(f);
-            }
-            this.humidity = resulthumidity.pop();
-            console.log(this.humidity);
-            this.cultivos[0].text=this.humidity;
-          });
-
+        .getData({ node: node })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          resulthumidity = [];
+          for (let key in data) {
+            const f = data[key].data;
+            resulthumidity.push(f);
+          }
+          this.humidity = resulthumidity.pop();
+          console.log(this.humidity);
+          this.cultivos[0].text = this.humidity;
+        });
     },
     loadHumidity2(node) {
       let resultArrayhumidity = [];
       this.resource
-          .getData({ node: node })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-            resultArrayhumidity = [];
-            for (let key in data) {
-              const g = data[key].data;
-              resultArrayhumidity.push(g);
-            }
-            this.humidity2 = resultArrayhumidity.pop();
-            this.cultivos[1].text=this.humidity2;
-          });
-
+        .getData({ node: node })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          resultArrayhumidity = [];
+          for (let key in data) {
+            const g = data[key].data;
+            resultArrayhumidity.push(g);
+          }
+          this.humidity2 = resultArrayhumidity.pop();
+          this.cultivos[1].text = this.humidity2;
+        });
     },
-
   },
   created() {
     const customAction = {
@@ -210,7 +209,6 @@ export default {
     this.resource = this.$resource("{node}.json", {}, customAction);
     this.loadHumidity("crop-1/Humidity");
     this.loadHumidity2("crop-2/Humidity");
-
   },
 };
 </script>
