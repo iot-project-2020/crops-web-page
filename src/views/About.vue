@@ -17,6 +17,14 @@
               <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
             </v-card>
           </v-col>
+          <v-col v-for="(user, i) in users" :key="i" :cols="user.flex">
+            <v-card :href="user.url">
+              <v-avatar color="accent" rounded size="190">
+                <span class="white--text headline">{{ user.name }}</span>
+              </v-avatar>
+              <v-card-title v-text="user.fullname"></v-card-title>
+            </v-card>
+          </v-col>
         </v-row>
       </v-container>
     </v-card>
@@ -26,6 +34,29 @@
 <script>
 export default {
   data: () => ({
+    users: [
+      {
+        name: "DT",
+        fullname: "Daniel Tarqui",
+        flex: 4,
+        url: "https://github.com/iot-project-2020",
+        subtitle: "Fulano",
+      },
+      {
+        name: "JM",
+        fullname: "Jonas Maidana",
+        flex: 4,
+        url: "https://github.com/iot-project-2020",
+        subtitle: "Fulano",
+      },
+      {
+        name: "ST",
+        fullname: "Sergio Troche",
+        flex: 4,
+        url: "https://github.com/iot-project-2020",
+        subtitle: "Fulano",
+      },
+    ],
     cards: [
       {
         title: "Pre-fab homes",
@@ -36,11 +67,14 @@ export default {
       },
 
       {
-        title: "Favorite road trips",
-        src: "https://cdn.vuetifyjs.com/images/cards/road.jpg",
+        title: "Perfil del Proyecto",
+        src:
+          "https://img.etimg.com/thumb/height-480,width-640,imgsize-53190,msid-67959578/google-docs.jpg",
         flex: 6,
-        url: "",
-        subtitle: "Fulano",
+        url:
+          "https://docs.google.com/document/d/14vixXxDeULvwnHqfA3p2C_pY6zErREYdZwA-T1xX12w/edit?usp=sharing",
+        subtitle:
+          "Puedes ver el perfil del proyecto haciendo click en esta imagen",
       },
       {
         title: "Best airlines",
@@ -55,31 +89,8 @@ export default {
           "https://logodownload.org/wp-content/uploads/2019/08/github-logo-2.png",
         flex: 12,
         url: "https://github.com/iot-project-2020",
-        subtitle: "Fulano",
-      },
-       {
-        title: "GitHub",
-        src:
-          "https://logodownload.org/wp-content/uploads/2019/08/github-logo-2.png",
-        flex: 4,
-        url: "https://github.com/iot-project-2020",
-        subtitle: "Fulano",
-      },
-       {
-        title: "Fulano",
-        src:
-          "https://logodownload.org/wp-content/uploads/2019/08/github-logo-2.png",
-        flex: 4,
-        url: "https://github.com/iot-project-2020",
-        subtitle: "Fulano",
-      },
-       {
-        title: "GitHub",
-        src:
-          "https://logodownload.org/wp-content/uploads/2019/08/github-logo-2.png",
-        flex: 4,
-        url: "https://github.com/iot-project-2020",
-        subtitle: "Fulano",
+        subtitle:
+          "Nuestro repositorio donde almacenamos el codigo de esta pagina y los nodos para el sistema de riego inteligente se almacena aqui ",
       },
     ],
   }),
