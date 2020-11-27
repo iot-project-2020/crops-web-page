@@ -145,11 +145,14 @@
         <v-card class="mx-auto pa-6">
           Humedad del suelo
           <h3>{{this.humidity}}</h3>
+          <CircularGauge :value="this.humidity" :height="100" />
+
         </v-card>
         <div class="my-6"></div>
         <v-card class="mx-auto pa-6">
           CO2
           <h3>{{this.co2}}</h3>
+
         </v-card>
         <div class="my-6"></div>
         <v-card class="mx-auto pa-6">
@@ -221,7 +224,14 @@
 </template>
 
 <script>
+import CircularGauge from "../components/CircularGauge";
+
 export default {
+
+
+  components: {
+    CircularGauge
+  },
   data:()=>({
     humedadsuelo:'',
     temperatura:'',
@@ -233,27 +243,12 @@ export default {
     co2: '',
     radiation:'',
     humidity: '',
-    // CO2:{
-    //     data: '20',
-    //     date:'25-11-2020',
-    //     Hour:'20:50',
-    // },
-    //
-    // radiationF:{
-    //   data: '20',
-    //   date:'25-11-2020',
-    //   Hour:'20:50',
-    // },
-    // HumidityF:{
-    //   data: '20',
-    //   date:'25-11-2020',
-    //   Hour:'20:50',
-    // },
     riegoset:{
       riego: '',
     },
 
   }),
+
 
   methods: {
     primavera(){
@@ -371,9 +366,6 @@ export default {
     },
     regar(){
       this.riegoset.riego="no"
-      // this.resource.putDataCO2(this.CO2);
-      // this.resource.putDataradiation(this.radiationF);
-      // this.resource.putDatahumidity(this.HumidityF);
       if(parseFloat(this.humidity)>=parseFloat(this.humedadsuelo) && parseFloat(this.co2)>=parseFloat(this.carbono) && parseFloat(this.radiation)>=parseFloat(this.radiacion) )
         this.riegoset.riego="yes"
 
@@ -403,6 +395,7 @@ export default {
   },
 
 };
+
 </script>
 
 <style>
