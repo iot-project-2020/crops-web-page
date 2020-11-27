@@ -2,12 +2,12 @@
   <div>
     <div class="gauge-title">
       <span ref="gauge-value" v-if="top" :class="gaugeValueClass"></span>
-      <span v-if="top" :class="gaugeValueClass">{{unit}}</span>
+      <span v-if="top" :class="gaugeValueClass">{{ unit }}</span>
     </div>
     <canvas ref="gauge" :height="height" :width="width"></canvas>
     <div class="gauge-title">
       <span ref="gauge-value" v-if="!top" :class="gaugeValueClass"></span>
-      <span v-if="!top" :class="gaugeValueClass">{{unit}}</span>
+      <span v-if="!top" :class="gaugeValueClass">{{ unit }}</span>
     </div>
   </div>
 </template>
@@ -19,39 +19,39 @@ export default {
   props: {
     unit: {
       type: String,
-      default: ""
+      default: "",
     },
     height: {
       type: String,
-      default: "200px"
+      default: "200px",
     },
     width: {
       type: String,
-      default: "200px"
+      default: "200px",
     },
     decimalPlace: {
       type: Number,
-      default: 0
+      default: 0,
     },
     gaugeValueClass: {
       type: String,
-      default: ""
+      default: "",
     },
     top: {
       type: Boolean,
-      default: false
+      default: false,
     },
     maxValue: {
       type: Number,
-      default: 100
+      default: 100,
     },
     minValue: {
       type: Number,
-      default: 0
+      default: 0,
     },
     options: {
       type: Object,
-      default: function() {
+      default: function () {
         return {
           angle: 0.15,
           lineWidth: 0.44,
@@ -59,7 +59,7 @@ export default {
           pointer: {
             length: 0.6,
             strokeWidth: 0.035,
-            color: "#000000"
+            color: "#000000",
           },
           limitMax: false,
           limitMin: false,
@@ -67,30 +67,30 @@ export default {
           colorStop: "#8FC0DA",
           strokeColor: "#E0E0E0",
           generateGradient: true,
-          highDpiSupport: true
+          highDpiSupport: true,
         };
-      }
+      },
     },
     animationSpeed: {
       type: Number,
-      default: 10
+      default: 10,
     },
     initialValue: {
       type: Number,
-      default: 0
+      default: 0,
     },
     value: {
       type: Number,
-      default: 80
+      default: 80,
     },
     donut: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
-      gauge: null
+      gauge: null,
     };
   },
   mounted() {
@@ -100,9 +100,9 @@ export default {
     delete this.gauge;
   },
   watch: {
-    value: function(newVal) {
+    value: function (newVal) {
       this.gauge.set(newVal);
-    }
+    },
   },
   methods: {
     initializeGauge() {
@@ -115,8 +115,8 @@ export default {
       this.gauge.setOptions(this.options);
       this.gauge.setTextField(this.$refs["gauge-value"], this.decimalPlace);
       this.gauge.set(this.value);
-    }
-  }
+    },
+  },
 };
 </script>
 

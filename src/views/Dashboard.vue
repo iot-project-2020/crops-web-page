@@ -264,7 +264,20 @@ export default {
           CO2Label: ["01:37:46", "01:43:46", "01:50:46", "01:70:46"],
           HumidityData: [],
           HumidityLabel: [],
-          RadiationData: [50, 60, 54, 65, 56, 56, 76, 76, 54, 65, 76, 55],
+          RadiationData: [
+            this.getRandomInt(40, 80),
+            this.getRandomInt(40, 80),
+            this.getRandomInt(40, 80),
+            65,
+            56,
+            this.getRandomInt(40, 80),
+            76,
+            76,
+            this.getRandomInt(40, 80),
+            65,
+            this.getRandomInt(40, 80),
+            55,
+          ],
           RadiationLabel: [
             "Enero",
             "Febrero",
@@ -296,6 +309,9 @@ export default {
       //     console.log("Se cambio" + data);
       //   });
     },
+    getRandomInt(min, max) {
+      return Math.random() * (max - min) + min;
+    },
     loadRadiation(snapshot) {
       const item = snapshot.val();
       const moment = require("moment");
@@ -303,7 +319,8 @@ export default {
         // console.log(key);
         if (key === "data") {
           this.firedatas[0].RadiationData.push(snapshot.val()[key]);
-          this.firedatas[1].RadiationData.push(snapshot.val()[key]);
+          // this.firedatas[1].RadiationData.push(snapshot.val()[key]);
+          this.firedatas[1].RadiationData.push(Math.random());
         }
         if (key === "date") {
           var dateString = moment

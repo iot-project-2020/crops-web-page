@@ -160,7 +160,6 @@
           <v-expansion-panel-header>Cultivo 1</v-expansion-panel-header>
           <v-expansion-panel-content>
             <div class="text--primary">
-
               <v-card class="mx-auto pa-6">
                 Humedad del suelo
                 <h3>{{ this.humidity }}</h3>
@@ -176,7 +175,11 @@
               <v-card class="mx-auto pa-6">
                 Radiación
                 <h3>{{ this.radiation }}</h3>
-                <CircularGauge :value="this.radiation" :height="100" :max-value="1000" />
+                <CircularGauge
+                  :value="this.radiation"
+                  :height="100"
+                  :max-value="1000"
+                />
               </v-card>
               <div class="my-6"></div>
               <v-row
@@ -213,7 +216,11 @@
               <v-card class="mx-auto pa-6">
                 Radiación
                 <h3>{{ this.radiation2 }}</h3>
-                <CircularGauge :value="this.radiation2" :height="100" :max-value="1000"/>
+                <CircularGauge
+                  :value="this.radiation2"
+                  :height="100"
+                  :max-value="1000"
+                />
               </v-card>
               <div class="my-6"></div>
               <v-row
@@ -272,7 +279,7 @@ export default {
       this.radiacion = 20;
       this.carbono = 10;
       this.regar();
-      this.regar2()
+      this.regar2();
     },
     otoño() {
       this.humedadsuelo = 30;
@@ -280,7 +287,7 @@ export default {
       this.radiacion = 20;
       this.carbono = 10;
       this.regar();
-      this.regar2()
+      this.regar2();
     },
     invierno() {
       this.humedadsuelo = 30;
@@ -288,7 +295,7 @@ export default {
       this.radiacion = 20;
       this.carbono = 10;
       this.regar();
-      this.regar2()
+      this.regar2();
     },
     verano() {
       this.humedadsuelo = 10;
@@ -296,7 +303,7 @@ export default {
       this.radiacion = 50;
       this.carbono = 20;
       this.regar();
-      this.regar2()
+      this.regar2();
     },
     loadDataco2(node) {
       this.resource
@@ -313,25 +320,23 @@ export default {
           }
           this.co2 = this.resultArray.pop();
         });
-
     },
     loadDataco22(node) {
       let resultArrayCO2 = [];
       this.resource
-          .getData({ node: node })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-            resultArrayCO2 = [];
-            for (let key in data) {
-              const f = data[key].data;
-              resultArrayCO2.push(f);
-            }
-            this.co22 = resultArrayCO2.pop();
-          });
-
+        .getData({ node: node })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          resultArrayCO2 = [];
+          for (let key in data) {
+            const f = data[key].data;
+            resultArrayCO2.push(f);
+          }
+          this.co22 = resultArrayCO2.pop();
+        });
     },
     loadradiation(node) {
       this.resource
@@ -352,20 +357,19 @@ export default {
     loadradiation2(node) {
       let resultArrayradiation = [];
       this.resource
-          .getData({ node: node })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-            resultArrayradiation = [];
-            for (let key in data) {
-              const f = data[key].data;
-              resultArrayradiation.push(f);
-            }
-            this.radiation2 = resultArrayradiation.pop();
-          });
-
+        .getData({ node: node })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          resultArrayradiation = [];
+          for (let key in data) {
+            const f = data[key].data;
+            resultArrayradiation.push(f);
+          }
+          this.radiation2 = resultArrayradiation.pop();
+        });
     },
     loadDHT(node) {
       let resultdht = [];
@@ -419,72 +423,75 @@ export default {
     loadHumidity2(node) {
       let resultArrayhumidity = [];
       this.resource
-          .getData({ node: node })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-            resultArrayhumidity = [];
-            for (let key in data) {
-              const f = data[key].data;
-              resultArrayhumidity.push(f);
-            }
-            this.humidity2 = resultArrayhumidity.pop();
-          });
-
+        .getData({ node: node })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          resultArrayhumidity = [];
+          for (let key in data) {
+            const f = data[key].data;
+            resultArrayhumidity.push(f);
+          }
+          this.humidity2 = resultArrayhumidity.pop();
+        });
     },
-    regarManual1(){
+    regarManual1() {
       this.riegoset.water = "ON";
 
       this.resource.putDatariego(this.riegoset);
     },
-    regarManual2(){
+    regarManual2() {
       this.riegoset2.water = "ON";
 
       this.resource.putDatariego2(this.riegoset2);
     },
-    regar(node) {this.resource
-          .getData({ node: node })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data.water);
-            for (let key in data) {
-              const g = data[key].water;
-              this.riegoset.water=g;
-            }
-
-          });
+    regar(node) {
+      this.resource
+        .getData({ node: node })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data.water);
+          for (let key in data) {
+            const g = data[key].water;
+            this.riegoset.water = g;
+          }
+        });
       if (
         parseFloat(this.humidity) >= parseFloat(this.humedadsuelo) &&
         parseFloat(this.co2) >= parseFloat(this.carbono) &&
         parseFloat(this.radiation) >= parseFloat(this.radiacion)
-      ){this.riegoset.water = "ON"
-        this.riegoset2.water = "ON"
+      ) {
+        this.riegoset.water = "ON";
+        this.riegoset2.water = "ON";
         this.resource.putDatariego2(this.riegoset2);
-        this.resource.putDatariego(this.riegoset);}
+        this.resource.putDatariego(this.riegoset);
+      }
     },
     regar2(node1) {
-      this.resource.getData({ node1: node1})
-          .then((response1) => {
-            return response1.json();
-          })
-          .then((data1) => {
-            for (let key in data1) {
-              const f = data1[key].water;
-              this.riegoset2.water=f;
-            }
-
-          });
+      this.resource
+        .getData({ node1: node1 })
+        .then((response1) => {
+          return response1.json();
+        })
+        .then((data1) => {
+          for (let key in data1) {
+            const f = data1[key].water;
+            this.riegoset2.water = f;
+          }
+        });
       if (
-          parseFloat(this.humidity) >= parseFloat(this.humedadsuelo) &&
-          parseFloat(this.co2) >= parseFloat(this.carbono) &&
-          parseFloat(this.radiation) >= parseFloat(this.radiacion)
-      ){this.riegoset.water = "ON"
+        parseFloat(this.humidity) >= parseFloat(this.humedadsuelo) &&
+        parseFloat(this.co2) >= parseFloat(this.carbono) &&
+        parseFloat(this.radiation) >= parseFloat(this.radiacion)
+      ) {
+        this.riegoset.water = "ON";
         this.resource.putDatariego2(this.riegoset2);
-        this.resource.putDatariego(this.riegoset);}
+        this.resource.putDatariego(this.riegoset);
+      }
     },
   },
 
