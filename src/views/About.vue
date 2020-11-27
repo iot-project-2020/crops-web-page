@@ -85,13 +85,13 @@ export default {
         url: "",
         subtitle: "Fulano",
       },
-      {
-        title: "Pre-fab homes",
-        src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
-        flex: 12,
-        url: "",
-        subtitle: "Fulano",
-      },
+      // {
+      //   title: "Pre-fab homes",
+      //   src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
+      //   flex: 12,
+      //   url: "",
+      //   subtitle: "Fulano",
+      // },
     ],
   }),
   methods: {

@@ -89,6 +89,21 @@ export default {
           "Para optimizar el consumo de agua y conseguir mejores rendimientos, es necesario hacer mediciones de la humedad del suelo en tiempo real. Al contar con la información necesaria se pueden regular las cantidades de agua a aplicar y paralelamente se pueden dosificar insumos agrícolas vía riego, lo que permitirá un ahorro económico. Existen diferentes técnicas para determinar el estado de humedad del suelo basadas en la utilización de sensores de humedad. En función de la manera de indicar el contenido de agua en el suelo hay dos tipos de sensores; los que miden la tensión o succión a la que esta retenida el agua en el suelo, y los que miden el contenido total de humedad en el suelo, expresado en porcentaje volumétrico.",
         flex: 7,
       },
+      {
+        title: "Sensores de humedad",
+        src: "https://grupoelectrostore.com/wp-content/uploads/2020/07/f2.png",
+        text:
+          "Para elegir un sensor se deben de considerar los siguientes aspectos: Conocer el funcionamiento teórico del aparato; para en el  futuro determinar si el funcionamiento de este es correcto. Conocer cuál es el grado de error inherente que el proveedor establece para el aparato que se pretende elegir; coyuntural para en un futuro poder determinar una adecuada calibración en campo.",
+        flex: 7,
+      },
+      {
+        title: "Sensores de calidad de aire",
+        src:
+          "https://lh3.googleusercontent.com/proxy/fVesfVXZMh53HQiWNz1J1j3EmjwdeMf__kKNsRyqY0APjC_DaNfzlYelQZ-zQ9YDmScWcozi0_ubiyAEoncmlhCrazWDS6mJQ4Ql4p4_Igzqf6SOi3xdtmfePBQCe3I",
+        text:
+          "Los sensores de calidad de aire son dispositivos usados para la detección de contaminantes en el aire. Esto incluye partículas, contaminantes y gases nocivos que pueden ser perjudiciales para la salud humana. Se utilizan en aplicaciones como el monitoreo de la calidad del aire, la detección de gas en industrias, controladores de combustión y generadores de oxígeno en aviones. Los sensores de compuestos orgánicos volátiles (VOC) disponibles son capaces de detectar químicos volátiles y contaminantes olorosos.",
+        flex: 5,
+      },
     ],
   }),
 };
