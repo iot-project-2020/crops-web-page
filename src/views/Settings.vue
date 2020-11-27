@@ -176,7 +176,7 @@
               <v-card class="mx-auto pa-6">
                 Radiación
                 <h3>{{ this.radiation }}</h3>
-                <CircularGauge :value="this.radiation" :height="100" :max-value="1000"/>
+                <CircularGauge :value="this.radiation" :height="100" :max-value="1000" />
               </v-card>
               <div class="my-6"></div>
               <v-row

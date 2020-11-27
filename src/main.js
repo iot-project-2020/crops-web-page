@@ -8,7 +8,6 @@ import {
   firestorePlugin
 } from 'vuefire'
 
-
 Vue.use(firestorePlugin)
 Vue.use(VueResource)
 Vue.use(VueRouter)
