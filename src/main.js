@@ -7,7 +7,9 @@ import vuetify from './plugins/vuetify';
 import {
   firestorePlugin
 } from 'vuefire'
+import VueCoreVideoPlayer from 'vue-core-video-player'
 
+Vue.use(VueCoreVideoPlayer)
 Vue.use(firestorePlugin)
 Vue.use(VueResource)
 Vue.use(VueRouter)
