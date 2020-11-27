@@ -160,7 +160,6 @@
           <v-expansion-panel-header>Cultivo 1</v-expansion-panel-header>
           <v-expansion-panel-content>
             <div class="text--primary">
-              <!-- Using the elevation prop -->
 
               <v-card class="mx-auto pa-6">
                 Humedad del suelo
@@ -171,19 +170,21 @@
               <v-card class="mx-auto pa-6">
                 CO2
                 <h3>{{ this.co2 }}</h3>
+                <CircularGauge :value="this.co2" :height="100" />
               </v-card>
               <div class="my-6"></div>
               <v-card class="mx-auto pa-6">
                 Radiación
                 <h3>{{ this.radiation }}</h3>
+                <CircularGauge :value="this.radiation" :height="100" :max-value="1000"/>
               </v-card>
               <div class="my-6"></div>
               <v-row
-                v-if="this.riegoset.riego === 'no'"
+                v-if="this.riegoset.water === 'OFF'"
                 align="center"
                 justify="space-around"
               >
-                <v-btn tile color="success">
+                <v-btn tile color="success" @click="regarManual1">
                   <v-icon left> mdi-water </v-icon>
                   Regar
                 </v-btn>
@@ -199,25 +200,28 @@
 
               <v-card class="mx-auto pa-6">
                 Humedad del suelo
-                <h3>{{ this.humidity }}</h3>
+                <h3>{{ this.humidity2 }}</h3>
+                <CircularGauge :value="this.humidity2" :height="100" />
               </v-card>
               <div class="my-6"></div>
               <v-card class="mx-auto pa-6">
                 CO2
-                <h3>{{ this.co2 }}</h3>
+                <h3>{{ this.co22 }}</h3>
+                <CircularGauge :value="this.co22" :height="100" />
               </v-card>
               <div class="my-6"></div>
               <v-card class="mx-auto pa-6">
                 Radiación
-                <h3>{{ this.radiation }}</h3>
+                <h3>{{ this.radiation2 }}</h3>
+                <CircularGauge :value="this.radiation2" :height="100" :max-value="1000"/>
               </v-card>
               <div class="my-6"></div>
               <v-row
-                v-if="this.riegoset.riego === 'no'"
+                v-if="this.riegoset2.water === 'OFF'"
                 align="center"
                 justify="space-around"
               >
-                <v-btn tile color="success">
+                <v-btn tile color="success" @click="regarManual2">
                   <v-icon left> mdi-water </v-icon>
                   Regar
                 </v-btn>
@@ -248,10 +252,16 @@ export default {
     resultradiation: [],
     resulHumidity: [],
     co2: "",
+    co22: "",
     radiation: "",
+    radiation2: "",
     humidity: "",
+    humidity2: "",
     riegoset: {
-      riego: "",
+      water: "OFF",
+    },
+    riegoset2: {
+      water: "OFF",
     },
   }),
 
@@ -261,24 +271,32 @@ export default {
       this.temperatura = 50;
       this.radiacion = 20;
       this.carbono = 10;
+      this.regar();
+      this.regar2()
     },
     otoño() {
       this.humedadsuelo = 30;
       this.temperatura = 50;
       this.radiacion = 20;
       this.carbono = 10;
+      this.regar();
+      this.regar2()
     },
     invierno() {
       this.humedadsuelo = 30;
       this.temperatura = 50;
       this.radiacion = 20;
       this.carbono = 10;
+      this.regar();
+      this.regar2()
     },
     verano() {
       this.humedadsuelo = 10;
       this.temperatura = 40;
       this.radiacion = 50;
       this.carbono = 20;
+      this.regar();
+      this.regar2()
     },
     loadDataco2(node) {
       this.resource
@@ -295,6 +313,25 @@ export default {
           }
           this.co2 = this.resultArray.pop();
         });
+
+    },
+    loadDataco22(node) {
+      let resultArrayCO2 = [];
+      this.resource
+          .getData({ node: node })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            resultArrayCO2 = [];
+            for (let key in data) {
+              const f = data[key].data;
+              resultArrayCO2.push(f);
+            }
+            this.co22 = resultArrayCO2.pop();
+          });
+
     },
     loadradiation(node) {
       this.resource
@@ -311,6 +348,24 @@ export default {
           }
           this.radiation = this.resultradiation.pop();
         });
+    },
+    loadradiation2(node) {
+      let resultArrayradiation = [];
+      this.resource
+          .getData({ node: node })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            resultArrayradiation = [];
+            for (let key in data) {
+              const f = data[key].data;
+              resultArrayradiation.push(f);
+            }
+            this.radiation2 = resultArrayradiation.pop();
+          });
+
     },
     loadDHT(node) {
       let resultdht = [];
@@ -361,35 +416,96 @@ export default {
           console.log(this.humidity);
         });
     },
-    regar() {
-      this.riegoset.riego = "no";
+    loadHumidity2(node) {
+      let resultArrayhumidity = [];
+      this.resource
+          .getData({ node: node })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            resultArrayhumidity = [];
+            for (let key in data) {
+              const f = data[key].data;
+              resultArrayhumidity.push(f);
+            }
+            this.humidity2 = resultArrayhumidity.pop();
+          });
+
+    },
+    regarManual1(){
+      this.riegoset.water = "ON";
+
+      this.resource.putDatariego(this.riegoset);
+    },
+    regarManual2(){
+      this.riegoset2.water = "ON";
+
+      this.resource.putDatariego2(this.riegoset2);
+    },
+    regar(node) {this.resource
+          .getData({ node: node })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data.water);
+            for (let key in data) {
+              const g = data[key].water;
+              this.riegoset.water=g;
+            }
+
+          });
       if (
         parseFloat(this.humidity) >= parseFloat(this.humedadsuelo) &&
         parseFloat(this.co2) >= parseFloat(this.carbono) &&
         parseFloat(this.radiation) >= parseFloat(this.radiacion)
-      )
-        this.riegoset.riego = "yes";
+      ){this.riegoset.water = "ON"
+        this.riegoset2.water = "ON"
+        this.resource.putDatariego2(this.riegoset2);
+        this.resource.putDatariego(this.riegoset);}
+    },
+    regar2(node1) {
+      this.resource.getData({ node1: node1})
+          .then((response1) => {
+            return response1.json();
+          })
+          .then((data1) => {
+            for (let key in data1) {
+              const f = data1[key].water;
+              this.riegoset2.water=f;
+            }
 
-      this.resource.putDatariego(this.riegoset);
+          });
+      if (
+          parseFloat(this.humidity) >= parseFloat(this.humedadsuelo) &&
+          parseFloat(this.co2) >= parseFloat(this.carbono) &&
+          parseFloat(this.radiation) >= parseFloat(this.radiacion)
+      ){this.riegoset.water = "ON"
+        this.resource.putDatariego2(this.riegoset2);
+        this.resource.putDatariego(this.riegoset);}
     },
   },
 
   created() {
     const customAction = {
       getData: { method: "GET" },
-      // putDataCO2: {method: "POST",url: "crop-1/CO2.json" },
-      // putDataradiation: {method: "POST",url: "crop-1/radiation.json" },
-      // putDatahumidity: {method: "POST",url: "crop-1/Humidity.json" },
       putDatariego: { method: "PATCH", url: "crop-1.json" },
+      putDatariego2: { method: "PATCH", url: "crop-2.json" },
     };
 
     this.resource = this.$resource("{node}.json", {}, customAction);
     this.loadDataco2("crop-1/CO2");
+    this.loadDataco22("crop-2/CO2");
     this.loadHumidity("crop-1/Humidity");
+    this.loadHumidity2("crop-2/Humidity");
     this.loadradiation("crop-1/Radiation");
+    this.loadradiation2("crop-2/Radiation");
     this.loadDHT("crop-1/DHT/Humidity");
     this.loadDHTtemperature("crop-1/DHT/Temperature");
-    this.regar();
+    this.regar("crop-1");
+    this.regar2("crop-2");
   },
 };
 </script>
