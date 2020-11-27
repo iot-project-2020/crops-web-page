@@ -25,6 +25,25 @@
               <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
             </v-card>
           </v-col>
+          <v-col :cols="8">
+            <v-card>
+              <v-carousel hide-delimiters>
+                <v-carousel-item
+                  v-for="(item, i) in items"
+                  :key="i"
+                  :src="item.src"
+                ></v-carousel-item>
+              </v-carousel>
+            </v-card>
+          </v-col>
+          <!-- <v-col :cols="6">
+            <v-card :href="card.url">
+              <vue-core-video-player
+                @play="your_method"
+                src="https://drive.google.com/file/d/1Up7v7LAhA-RRMxcwqkPwYAyIZ-98rsbd/view"
+              ></vue-core-video-player>
+            </v-card>
+          </v-col> -->
         </v-row>
       </v-container>
     </v-card>
@@ -33,6 +52,7 @@
 
 <script>
 export default {
+  components: {},
   data: () => ({
     users: [
       {
@@ -72,19 +92,20 @@ export default {
         title: "Perfil del Proyecto",
         src:
           "https://img.etimg.com/thumb/height-480,width-640,imgsize-53190,msid-67959578/google-docs.jpg",
-        flex: 6,
+        flex: 4,
         url:
           "https://drive.google.com/file/d/1JEjq-S9Gk-JJdBaY6Hw6dpPOVC_34t4g/view?usp=sharing",
         subtitle:
           "Puedes ver el perfil del proyecto haciendo click en esta imagen",
       },
-      {
-        title: "Best airlines",
-        src: "https://cdn.vuetifyjs.com/images/cards/plane.jpg",
-        flex: 6,
-        url: "",
-        subtitle: "Fulano",
-      },
+      // {
+      //   title: "Circuito",
+      //   src:
+      //     "https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/examples/circuit-slide.png",
+      //   flex: 6,
+      //   url: "",
+      //   subtitle: "Fulano",
+      // },
       // {
       //   title: "Pre-fab homes",
       //   src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
@@ -92,6 +113,15 @@ export default {
       //   url: "",
       //   subtitle: "Fulano",
       // },
+    ],
+    items: [
+      { src: require("../assets/circuito.jpeg") },
+      { src: require("../assets/circuito_completo.jpg") },
+      { src: require("../assets/circuito_1.jpg") },
+      { src: require("../assets/circuito_2.jpg") },
+      { src: require("../assets/circuito_3.jpg") },
+      { src: require("../assets/circuito_4.jpg") },
+      { src: require("../assets/circuito_5.jpg") },
     ],
   }),
   methods: {},
