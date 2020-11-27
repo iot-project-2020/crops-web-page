@@ -30,21 +30,21 @@
               <h3>Humedad de la tierra: {{cultivo.text}} %</h3>
               <v-progress-circular
                   v-if="cultivo.text>=50"
-                  :width="4"
+                  :width="3"
                   color="green"
-                  indeterminate
+                  :value="100"
               >Estable</v-progress-circular>
               <v-progress-circular
                   v-if="cultivo.text>30 && cultivo.text<50 "
-                  :width="4"
+                  :width="3"
                   color="yellow"
-                  indeterminate
+                  :value="70"
               >Intermedio</v-progress-circular>
               <v-progress-circular
                   v-if="cultivo.text<30"
-                  :width="4"
+                  :width="3"
                   color="red"
-                  indeterminate
+                  :value="30"
               >Critico</v-progress-circular>
             </v-card>
           </v-col>
