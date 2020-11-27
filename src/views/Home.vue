@@ -1,13 +1,12 @@
 <template>
   <div>
-    <v-carousel v-model="model">
-      <v-carousel-item
-        v-for="(item, i) in items"
-        :key="i"
-        :src="item.src"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
-      >
+    <v-carousel
+      cycle
+      v-model="model"
+      hide-delimiter-background
+      show-arrows-on-hover
+    >
+      <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
         <v-row class="fill-height" align="center" justify="center">
           <div class="display-3">{{ item.text }}</div>
         </v-row>
