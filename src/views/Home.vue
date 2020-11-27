@@ -23,33 +23,40 @@
           >
             <v-card>
               <v-img
-                  :src="cultivo.src"
-                  class="white--text align-end"
-                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                  height="200px"
+                :src="cultivo.src"
+                class="white--text align-end"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                height="200px"
               >
                 <v-card-title v-text="cultivo.title"></v-card-title>
               </v-img>
 
-              <h3>Humedad de la tierra: {{cultivo.text}} %</h3>
+              <h3>Humedad de la tierra: {{ cultivo.text }} %</h3>
               <v-progress-circular
-                  v-if="cultivo.text>=50"
-                  :width="3"
-                  color="green"
-                  :value="100"
-              >Estable</v-progress-circular>
+                v-if="cultivo.text >= 50"
+                :width="3"
+                color="green"
+                :value="100"
+              >
+                Estable
+              </v-progress-circular>
               <v-progress-circular
-                  v-if="cultivo.text>30 && cultivo.text<50 "
-                  :width="3"
-                  color="yellow"
-                  :value="70"
-              >Intermedio</v-progress-circular>
+                v-if="cultivo.text > 30 && cultivo.text < 50"
+                :width="3"
+                color="yellow"
+                :value="70"
+              >
+                Intermedio
+              </v-progress-circular>
               <v-progress-circular
-                  v-if="cultivo.text<30"
-                  :width="3"
-                  color="red"
-                  :value="30"
-              >Critico</v-progress-circular>
+                v-if="cultivo.text < 30"
+                :width="6"
+                :height="10"
+                color="red"
+                :value="30"
+              >
+                Critico
+              </v-progress-circular>
             </v-card>
           </v-col>
           <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
@@ -156,7 +163,6 @@ export default {
         estado: "",
         flex: 6,
       },
-
     ],
   }),
   methods: {
@@ -196,7 +202,6 @@ export default {
           this.cultivos[1].text = this.humidity2;
         });
     },
-
   },
   created() {
     const customAction = {
@@ -208,7 +213,6 @@ export default {
     this.resource = this.$resource("{node}.json", {}, customAction);
     this.loadHumidity("crop-1/Humidity");
     this.loadHumidity2("crop-2/Humidity");
-
   },
 };
 </script>
